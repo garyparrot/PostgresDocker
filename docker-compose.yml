@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+
+    postgresql:
+        image: postgres:12-alpine
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        networks:
+            - db_network
+        environment:
+            POSTGRES_HOST_AUTH_METHOD: md5
+        env_file:
+            - ./postgres.env
+
+    pgAdmin:
+        image: dpage/pgadmin4:latest
+        ports:
+            - 80:80
+        networks:
+            - db_network
+        environment:
+            PGADMIN_CONFIG_LOGIN_BANNER: "'Warning! Authorised users only!'"
+        env_file:
+            - ./pgAdmin4.env
+
+volumes:
+    pg_data:
+        name: "postgres_data"
+
+networks:
+    db_network:
+        name: database_network
+        driver: bridge
