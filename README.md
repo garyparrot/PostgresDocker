@@ -1,6 +1,6 @@
 # PostgresDocker
 
-This docker compose example include ``PostgreSQL 12`` with ``pgAdmin4``.
+Docker compose example including ``PostgreSQL 12`` with ``pgAdmin4``.
 
 ## Default Port
 
